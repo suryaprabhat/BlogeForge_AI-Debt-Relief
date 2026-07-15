@@ -294,7 +294,7 @@ def predict_settlement(
     # Record event in general AI History
     history_entry = AIHistory(
         UserID=current_user.UserID,
-        GeneratedContent=f"Suggested settlement of {prediction.SuggestedSettlement}% (${prediction.PredictedAmount}) for loan from {loan.LenderName} with Risk Category: {prediction.RiskCategory}.",
+        GeneratedContent=f"Suggested settlement of {prediction.SuggestedSettlement}% (₹{prediction.PredictedAmount}) for loan from {loan.LenderName} with Risk Category: {prediction.RiskCategory}.",
         QueryType="Settlement Prediction Review"
     )
     db.add(history_entry)
@@ -350,7 +350,7 @@ def generate_letter(
     # Record event in general AI History
     history_entry = AIHistory(
         UserID=current_user.UserID,
-        GeneratedContent=f"Drafted a hardship settlement letter for {loan.LenderName}. Hardship: {negotiation_data.HardshipReason}. Proposed settlement amount: ${round(loan.OutstandingAmount * ((negotiation_data.ProposedSettlementPercent or 45.0) / 100.0), 2)}.",
+        GeneratedContent=f"Drafted a hardship settlement letter for {loan.LenderName}. Hardship: {negotiation_data.HardshipReason}. Proposed settlement amount: ₹{round(loan.OutstandingAmount * ((negotiation_data.ProposedSettlementPercent or 45.0) / 100.0), 2)}.",
         QueryType="Hardship Letter Draft"
     )
     db.add(history_entry)

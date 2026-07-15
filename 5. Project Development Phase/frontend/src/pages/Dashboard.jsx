@@ -304,7 +304,7 @@ const Dashboard = () => {
                 }}
               />
             </svg>
-            <div style={{ position: 'absolute', bottom: '15px', textAlign: 'center' }}>
+            <div style={{ position: 'absolute', bottom: '0px', left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
               <span className={`badge ${stress.class}`} style={{ fontSize: '0.9rem', padding: '6px 14px' }}>
                 {stress.text}
               </span>
@@ -363,7 +363,7 @@ const Dashboard = () => {
             <div>
               <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'block' }}>Monthly Surplus Income</span>
               <span style={{ fontSize: '1.25rem', fontWeight: '700', color: (dashboardData.MonthlySurplus < 0 ? 'var(--color-danger)' : 'var(--color-success)') }}>
-                ${dashboardData.MonthlySurplus.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                ₹{dashboardData.MonthlySurplus.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </span>
             </div>
             {dashboardData.MonthlySurplus < 0 && (
@@ -379,17 +379,17 @@ const Dashboard = () => {
       <div className="metrics-grid">
         <div className="glass-panel metric-card info">
           <span className="metric-label">Total Debt Balance</span>
-          <span className="metric-value">${dashboardData.TotalOutstanding.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+          <span className="metric-value">₹{dashboardData.TotalOutstanding.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
         
         <div className="glass-panel metric-card danger">
           <span className="metric-label">Monthly EMI Bill</span>
-          <span className="metric-value">${dashboardData.TotalEMI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+          <span className="metric-value">₹{dashboardData.TotalEMI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
 
         <div className="glass-panel metric-card success">
           <span className="metric-label">Monthly Income</span>
-          <span className="metric-value">${(user?.MonthlyIncome || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+          <span className="metric-value">₹{(user?.MonthlyIncome || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
         </div>
 
         <div className="glass-panel metric-card warning">
@@ -439,8 +439,8 @@ const Dashboard = () => {
                   <tr key={loan.LoanID}>
                     <td style={{ fontWeight: '600' }}>{loan.LenderName}</td>
                     <td>{loan.LoanType}</td>
-                    <td>${loan.OutstandingAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
-                    <td>${loan.EMI.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                    <td>₹{loan.OutstandingAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                    <td>₹{loan.EMI.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
                     <td>{loan.InterestRate}%</td>
                     <td>
                       {loan.OverdueMonths > 0 ? (
@@ -499,7 +499,7 @@ const Dashboard = () => {
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Monthly Gross Income ($)</label>
+                <label className="form-label">Monthly Gross Income (₹)</label>
                 <input 
                   type="number" 
                   className="form-control" 
@@ -512,7 +512,7 @@ const Dashboard = () => {
                 />
               </div>
               <div className="form-group" style={{ marginBottom: '28px' }}>
-                <label className="form-label">Basic Monthly Expenses ($) <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>(excluding EMIs)</span></label>
+                <label className="form-label">Basic Monthly Expenses (₹) <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>(excluding EMIs)</span></label>
                 <input 
                   type="number" 
                   className="form-control" 
@@ -574,7 +574,7 @@ const Dashboard = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className="form-group">
-                  <label className="form-label">Outstanding Balance ($)</label>
+                  <label className="form-label">Outstanding Balance (₹)</label>
                   <input 
                     type="number" 
                     className="form-control" 
@@ -603,7 +603,7 @@ const Dashboard = () => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className="form-group">
-                  <label className="form-label">Monthly EMI ($)</label>
+                  <label className="form-label">Monthly EMI (₹)</label>
                   <input 
                     type="number" 
                     className="form-control" 

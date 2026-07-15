@@ -150,7 +150,7 @@ const SettlementPredictor = () => {
                 >
                   {loans.map(l => (
                     <option key={l.LoanID} value={l.LoanID}>
-                      {l.LenderName} - {l.LoanType} (${l.OutstandingAmount.toLocaleString()})
+                      {l.LenderName} - {l.LoanType} (₹{l.OutstandingAmount.toLocaleString()})
                     </option>
                   ))}
                 </select>
@@ -160,7 +160,7 @@ const SettlementPredictor = () => {
                 <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-muted)', marginBottom: '24px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '8px' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Outstanding Balance:</span>
-                    <span style={{ fontWeight: '600' }}>${selectedLoan.OutstandingAmount.toLocaleString()}</span>
+                    <span style={{ fontWeight: '600' }}>₹{selectedLoan.OutstandingAmount.toLocaleString()}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '8px' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Interest Rate:</span>
@@ -168,7 +168,7 @@ const SettlementPredictor = () => {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '8px' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Current EMI:</span>
-                    <span style={{ fontWeight: '600' }}>${selectedLoan.EMI}/mo</span>
+                    <span style={{ fontWeight: '600' }}>₹{selectedLoan.EMI}/mo</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Delinquency Status:</span>
@@ -222,17 +222,17 @@ const SettlementPredictor = () => {
                 <div style={{ background: 'rgba(255, 255, 255, 0.02)', border: '1px solid var(--border-muted)', borderRadius: 'var(--radius-sm)', padding: '16px', textAlign: 'center' }}>
                   <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Settlement Amount</span>
                   <span style={{ fontSize: '2.2rem', fontWeight: '800', color: 'white' }}>
-                    ${prediction.PredictedAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                    ₹{prediction.PredictedAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </span>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'block' }}>Save ${(selectedLoan.OutstandingAmount - prediction.PredictedAmount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'block' }}>Save ₹{(selectedLoan.OutstandingAmount - prediction.PredictedAmount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
 
               {/* Progress visual comparison */}
               <div style={{ marginBottom: '28px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '8px' }}>
-                  <span>Settlement: ${prediction.PredictedAmount.toLocaleString()}</span>
-                  <span>Original Debt: ${selectedLoan.OutstandingAmount.toLocaleString()}</span>
+                  <span>Settlement: ₹{prediction.PredictedAmount.toLocaleString()}</span>
+                  <span>Original Debt: ₹{selectedLoan.OutstandingAmount.toLocaleString()}</span>
                 </div>
                 <div style={{ height: '14px', background: 'rgba(239, 68, 68, 0.15)', borderRadius: '99px', overflow: 'hidden', display: 'flex' }}>
                   <div style={{ height: '100%', width: `${prediction.SuggestedSettlement}%`, background: 'var(--color-success)', boxShadow: '0 0 10px rgba(16,185,129,0.3)' }} />
@@ -303,11 +303,11 @@ const SettlementPredictor = () => {
                   <div style={{ borderTop: '1px solid var(--border-muted)', paddingTop: '12px', marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block' }}>Monthly Pay</span>
-                      <span style={{ fontSize: '1.2rem', fontWeight: '700' }}>${opt.monthly.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                      <span style={{ fontSize: '1.2rem', fontWeight: '700' }}>₹{opt.monthly.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                     </div>
                     <div style={{ textAlign: 'right' }}>
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block' }}>Total Payout</span>
-                      <span style={{ fontSize: '1rem', fontWeight: '600' }}>${opt.total.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                      <span style={{ fontSize: '1rem', fontWeight: '600' }}>₹{opt.total.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                     </div>
                   </div>
                 </div>

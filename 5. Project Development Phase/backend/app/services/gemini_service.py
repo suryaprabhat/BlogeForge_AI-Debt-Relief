@@ -56,14 +56,14 @@ def generate_ai_negotiation(
     
     Borrower Details:
     - Name: {user_name}
-    - Gross Monthly Income: ${monthly_income:.2f}
-    - Monthly Expenses (excluding this loan): ${monthly_expenses:.2f}
+    - Gross Monthly Income: ₹{monthly_income:.2f}
+    - Monthly Expenses (excluding this loan): ₹{monthly_expenses:.2f}
     
     Loan Details:
     - Lender: {lender}
     - Loan Type: {loan_type}
-    - Outstanding Balance: ${outstanding:.2f}
-    - Current Monthly Payment (EMI): ${emi:.2f}
+    - Outstanding Balance: ₹{outstanding:.2f}
+    - Current Monthly Payment (EMI): ₹{emi:.2f}
     - Months Overdue: {overdue} months
     
     Hardship Situation:
@@ -71,12 +71,12 @@ def generate_ai_negotiation(
     - Additional Details: {details_str}
     
     Proposed Settlement:
-    - Target Settlement: {suggested_percent}% of balance (offering ${settlement_amount:.2f} as a final settlement)
+    - Target Settlement: {suggested_percent}% of balance (offering ₹{settlement_amount:.2f} as a final settlement)
     
     Your task:
     Generate a JSON response containing two keys:
     1. "NegotiationStrategy": A bulleted list of 3-4 professional negotiation tips specific to this scenario. Focus on how the borrower should communicate, follow-up, and handle negotiations for this specific lender/loan type.
-    2. "NegotiationLetter": A highly professional, polite, and persuasive formal hardship and settlement request letter/email. It must explain the financial hardship, request a settlement of the outstanding balance, propose the settlement amount of ${settlement_amount:.2f} ({suggested_percent}% of the balance), and ask for a written agreement. Do not include placeholders; write a fully drafted letter using the provided details. Use standard formal layout.
+    2. "NegotiationLetter": A highly professional, polite, and persuasive formal hardship and settlement request letter/email. It must explain the financial hardship, request a settlement of the outstanding balance, propose the settlement amount of ₹{settlement_amount:.2f} ({suggested_percent}% of the balance), and ask for a written agreement. Do not include placeholders; write a fully drafted letter using the provided details. Use standard formal layout.
     
     Response format:
     {{
@@ -120,9 +120,9 @@ def generate_ai_negotiation(
     # 1. Custom Strategy Tips
     strategy_tips = [
         f"Be prepared to offer the settlement as a lump sum or in at most 3 monthly installments. Unsecured lenders (like {loan_type}) prioritize speed over the full balance.",
-        f"Clearly explain that your current hardship ({hardship_reason}) prevents you from paying the full outstanding balance of ${outstanding:,.2f}.",
+        f"Clearly explain that your current hardship ({hardship_reason}) prevents you from paying the full outstanding balance of ₹{outstanding:,.2f}.",
         f"Ask for the 'Settlement Agreement' strictly in writing before sending any payments. Verbal promises are not legally binding.",
-        f"If the negotiator is aggressive, remain calm, cite your monthly surplus of ${max(0.0, monthly_income - monthly_expenses - emi):,.2f}, and offer to send supporting bank statements."
+        f"If the negotiator is aggressive, remain calm, cite your monthly surplus of ₹{max(0.0, monthly_income - monthly_expenses - emi):,.2f}, and offer to send supporting bank statements."
     ]
     
     # 2. Hardship-specific descriptions
@@ -146,9 +146,9 @@ To the Settlement Department at {lender},
 
 I am writing this letter to formally request a settlement agreement for my {loan_type} account. I am currently experiencing severe financial hardship due to {hardship_desc}
 
-As reflected in my account status, my account is currently {overdue} months overdue. I have conducted a thorough review of my finances: my gross monthly income is ${monthly_income:,.2f}, while my essential living costs (housing, groceries, and medical needs) total ${monthly_expenses:,.2f}. After covering these absolute basic needs, I have very little surplus income remaining, making it impossible to service the regular monthly payment of ${emi:,.2f} on my balance of ${outstanding:,.2f}.
+As reflected in my account status, my account is currently {overdue} months overdue. I have conducted a thorough review of my finances: my gross monthly income is ₹{monthly_income:,.2f}, while my essential living costs (housing, groceries, and medical needs) total ₹{monthly_expenses:,.2f}. After covering these absolute basic needs, I have very little surplus income remaining, making it impossible to service the regular monthly payment of ₹{emi:,.2f} on my balance of ₹{outstanding:,.2f}.
 
-I want to resolve this obligation and avoid default. To achieve this, I have secured a one-time assistance from my family to offer a settlement. I propose a final, full settlement payment of ${settlement_amount:,.2f}, which represents {suggested_percent}% of the total outstanding balance.
+I want to resolve this obligation and avoid default. To achieve this, I have secured a one-time assistance from my family to offer a settlement. I propose a final, full settlement payment of ₹{settlement_amount:,.2f}, which represents {suggested_percent}% of the total outstanding balance.
 
 I can make this payment within 14 business days of receiving your official, written approval of this settlement. Once this payment is received and processed, I request that the account be marked as "Settled" or "Paid in Full" with all credit bureaus, and that the remaining balance be fully waived and written off.
 
